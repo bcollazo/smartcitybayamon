@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SmartRótulos Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <img class="comerio og" src="{{url_for('static', filename='images/comerio.png')}}"
+        width="350" height="350" />
+    <img class="comerio color" src="{{url_for('static', filename='images/comerio-red.png')}}"
+        width="350" height="350" />
+    <img class="aguas og" src="{{url_for('static', filename='images/aguasbuenas.png')}}"
+        width="350" height="350" />
+    <img class="aguas color" src="{{url_for('static', filename='images/aguasbuenas-blue.png')}}"
+        width="350" height="350" />
+    <img class="bayamon og" src="{{url_for('static', filename='images/bayamon.png')}}"
+        width="350" height="350" />
+    <img class="bayamon color" src="{{url_for('static', filename='images/bayamon-yellow.png')}}"
+        width="350" height="350" />
+
+    <script type="text/javascript">
+        var r1 = false,
+            r2 = false,
+            r3 = false;
+        $(".color").hide();
+        var pollData = function() {
+            $.get('/status', function(data) {
+                console.log(data);
+                r1 = data['r1'];
+                r2 = data['r2'];
+                r3 = data['r3'];
+            });
+        };
+        var flashSigns = function() {
+            if (r1) {
+                $(".comerio.og").toggle();
+                $(".comerio.color").toggle();
+            } else {
+                $(".comerio.og").show();
+                $(".comerio.color").hide();
+            }
+            if (r2) {
+                $(".aguas.og").toggle();
+                $(".aguas.color").toggle();
+            } else {
+                $(".aguas.og").show();
+                $(".aguas.color").hide();
+            }
+            if (r3) {
+                $(".bayamon.og").toggle();
+                $(".bayamon.color").toggle();
+            } else {
+                $(".bayamon.og").show();
+                $(".bayamon.color").hide();
+            }
+        }
+        setInterval(pollData, 1000);
+        setInterval(flashSigns, 500);
+    </script>
+</body>
+</html>
