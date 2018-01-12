@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify, render_template
 import requests
-import random
 from pprint import pprint
 app = Flask(__name__)
 
@@ -101,4 +100,4 @@ def choose_color(step, slat, slng, tlat, tlng):
         tlng == -66.1564493, tlng, -66.1564493
     # if step yields right polyline,
     # elsif step yields left polyline, ect...
-    return 'green'
+    return 'yellow'

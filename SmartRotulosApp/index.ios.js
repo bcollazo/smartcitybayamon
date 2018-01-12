@@ -109,9 +109,14 @@ export default class SmartRotulosApp extends Component {
         );
     } else {
       var content = (
-        <Text style={styles.welcome}>
-          Driving to {this.state.destination}
-        </Text>
+        <View>
+          <Text style={styles.welcome2}>
+            Driving to:
+          </Text>
+          <Text style={styles.welcome}>
+           {this.state.destination}
+          </Text>
+        </View>
         );
     }
     return (
@@ -125,12 +130,18 @@ export default class SmartRotulosApp extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 42,
+    textAlign: 'center',
+    margin: 20,
+  },
+  welcome2: {
+    marginTop: 180,
+    fontSize: 42,
+    fontWeight: 'bold',
     textAlign: 'center',
     margin: 20,
   },
